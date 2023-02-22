@@ -1,0 +1,18 @@
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+knife4j:
+  enable: true
+  production: false
+  basic:
+    enable: true
+    username: smile
+    password: root
+
