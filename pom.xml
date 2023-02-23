@@ -6,6 +6,7 @@
     <modules>
         <module>logback</module>
         <module>swagger</module>
+        <module>fastjson</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -30,6 +31,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!-- 去掉Jackson依赖，用fastjson -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-json</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

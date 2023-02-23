@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author: smile
- * @title:
- * @projectName:
- * @description: TODO
+ * @title: swagger controller
+ * @projectName: swagger
+ * @description: swagger controller
  * @date: 2023/2/22 10:04 AM
  */
 @Api(tags = "测试")

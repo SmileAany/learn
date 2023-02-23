@@ -14,5 +14,5 @@ knife4j:
   basic:
     enable: true
     username: smile
-    password: root
+    password: 123456
 

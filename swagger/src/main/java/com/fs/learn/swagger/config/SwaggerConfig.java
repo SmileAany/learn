@@ -63,12 +63,10 @@ public class SwaggerConfig {
     private List<Response> getGlobalResponseMessage() {
         List<Response> responseList = new ArrayList<>();
 
-        Arrays.stream(ResponseStatus.values()).forEach(s -> {
-            responseList.add(new ResponseBuilder()
-                    .code(String.valueOf(s.getCode()))
-                    .description(s.getMessage())
-                    .build());
-        });
+        Arrays.stream(ResponseStatus.values()).forEach(s -> responseList.add(new ResponseBuilder()
+                .code(String.valueOf(s.getCode()))
+                .description(s.getMessage())
+                .build()));
 
         return responseList;
     }
