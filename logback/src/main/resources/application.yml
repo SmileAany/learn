@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+
+logging:
+  file:
+    path: ./logs
+  level:
+    name: info
