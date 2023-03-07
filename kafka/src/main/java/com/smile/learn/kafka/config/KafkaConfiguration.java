@@ -14,10 +14,23 @@ import org.springframework.kafka.config.TopicBuilder;
  */
 @Configuration
 public class KafkaConfiguration {
-    public static final String TOPIC_MESSAGE = "message";
+    /**
+     * 雇员主题
+     **/
+    public static final String TOPIC_EMPLOYEE = "livechat_employee";
+
+    /**
+    * 部门主题
+    **/
+    public static final String TOPIC_DEPARTMENT = "livechat_department";
 
     @Bean
-    public NewTopic customerServiceTopic() {
-        return TopicBuilder.name(TOPIC_MESSAGE).build();
+    public NewTopic employeeTopic() {
+        return TopicBuilder.name(TOPIC_EMPLOYEE).build();
+    }
+
+    @Bean
+    public NewTopic departmentTopic() {
+        return TopicBuilder.name(TOPIC_EMPLOYEE).build();
     }
 }

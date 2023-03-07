@@ -1,5 +1,6 @@
 package com.smile.learn.kafka.consumer;
 
+import com.smile.learn.kafka.config.KafkaConfiguration;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class SendMessageConsumer {
     private KafkaTemplate<Object, Object> kafkaTemplate;
 
     public boolean sendMessage(String topic, String message) {
-        kafkaTemplate.send(topic,0,"root",message);
+        kafkaTemplate.send(topic,message);
 
         return true;
     }

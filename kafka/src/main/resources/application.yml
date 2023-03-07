@@ -4,57 +4,26 @@ server:
 spring:
   kafka:
     bootstrap-servers: 127.0.0.1:9092
-    listener:
-      missing-topics-fatal: false
-    consumer:
-      enable-auto-commit: true
-      auto:
-        commit:
-          intervals:
-            ms: 1000
-      # 当kafka中没有初始offset或offset超出范围时将自动重置offset
-      # (1) earliest:重置为分区中最小的offset;
-      # (2) latest:重置为分区中最新的offset(消费分区中新产生的数据);
-      # (3) none:只要有一个分区不存在已提交的offset,就抛出异常;
-      auto-offset-reset: latest
-      # 消息的反序列化
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      # 设置批量消费的消息数
-      max-poll-records: 10
-      properties:
-        # 消费会话超时时间
-        session:
-          timeout:
-            ms: 120000
-        # 消费请求超时时间
-        request:
-          timeout:
-            ms: 180000
-        # 默认的消费组id
-        group:
-          id: defaultConsumerGroup
-    # ===============生产者配置===============
     producer:
-      # 重试次数
-      retries: 1
-      # 应答级别：多少个分区副本完成备份后向生产者发送应答消息(可选0、1、all/-1)
-      acks: -1
-      # 批量大小
+      retries: 0
       batch-size: 16384
-      # 生产端缓冲区大小
-      buffer-memory: 33554432
-      # 消息的序列化
+      buffer-memory: 33444432
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      # 设置生成事务的前缀(使用事务时开启，不使用则注释掉)
-      #transaction-id-prefix: transaction_
+      acks: all
       properties:
-        # 提交延时
-        # 当生产端积累的消息达到batch-size或接收到消息linger.ms后,生产者就会将消息提交给kafka
-        # linger.ms为0表示每接收到一条消息就提交给kafka,此时batch-size失效
-        linger:
-          ms: 0
-          # 自定义分区器
-          #partitioner:
-          #class: com.zqf.config.MyPartitioner # 配置自定义分区策略后所有消息都在 partition 0
+        linger.ms: 1
+    consumer:
+      group-id: livechatGroup
+      enable-auto-commit: false
+      auto-commit-interval: 1s
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      fetch-min-size: 1
+      fetch-max-wait: 500
+      max-poll-records: 500
+    listener:
+      concurrency: 1
+      ack-mode: manual_immediate
+      missing-topics-fatal: false

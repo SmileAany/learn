@@ -1,5 +1,6 @@
 package com.smile.learn.kafka.controller;
 
+import com.smile.learn.kafka.config.KafkaConfiguration;
 import com.smile.learn.kafka.consumer.SendMessageConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class ConsumerController {
 
     @GetMapping("/test")
     public String sendMessage() {
-        sendMessageConsumer.sendMessage("message","admin");
+        sendMessageConsumer.sendMessage("test","admin");
 
         return "发送成功";
     }
